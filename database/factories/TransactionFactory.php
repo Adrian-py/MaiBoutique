@@ -15,7 +15,7 @@ class TransactionFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->unique()->numberBetween(2, User::count()),
+            // 'user_id' => $this->faker->unique()->numberBetween(2, User::count()),
         ];
     }
 }

@@ -35,14 +35,21 @@ class DatabaseSeeder extends Seeder
 
         // Users with Member Role
         User::factory()->count(10)->create()->each(function($user){
-            $cart = Cart::factory()->count(1)->state([
+            Cart::factory()->count(1)->state([
                 "user_id" => $user->id
-            ])->create();
-            // ->has(CartDetail::factory()->count(2)->state(function(array $attributes, Cart $cart){
-            //     return ["cart_id" => $cart->id];
-            // }))->create();
+            ])->create()->each(function($cart){
+                CartDetail::factory()->count(2)->state([
+                    "cart_id" => $cart->id
+                ])->create();
+            });
 
-            CartDetail::factory()->count(2)->for($cart)->create();
+            Transaction::factory()->count(1)->state([
+                "user_id" => $user->id
+            ])->create()->each(function($transaction){
+                TransactionDetail::factory()->count(2)->state([
+                    "transaction_id" => $transaction->id
+                ])->create();
+            });
         });
 
         // User::create([
