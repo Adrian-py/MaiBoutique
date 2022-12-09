@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --indigoDye: 5, 12, 31;
+    --lemon: 250, 240, 202;
+    --yellow: 244, 211, 94;
+    --sandyBrown: 238, 150, 75;
+    --orange: 249, 87, 56;
+
+    --background: var(--indigoDye);
+    --border: var(--lemon);
+    --textButton: var(--yellow);
+    --text: var(--lemon);
+    --darkText: var(--indigoDye);
+    --registerButtonBackground: var(--yellow);
+
+    /* Fonts */
+    --source: "Source Sans Pro", sans-serif;
+    --montserrat: "Montserrat", sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: rgba(var(--background));
+    font-family: var(--montserrat);
+}
+
+/* Table Of Contents */
+/* 1. Navbar */
+/* 2. Welcome Page */
+/* 3. Login Page */
+/* 4. Register Page */
+/* 5. Login and Register Forms */
+
+/* Navbar */
+nav {
+    height: 6rem;
+    padding: 0 6.667vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--border));
+}
+
+.nav__logo {
+    cursor: pointer;
+}
+
+.nav__signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(var(--textButton));
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-family: var(--source);
+    transition: transform 150ms ease-in-out;
+}
+
+.nav__signin > svg {
+    margin-left: 4px;
+}
+
+.nav__signin:hover {
+    transform: scale(1.05);
+}
+
+/* Welcome Page */
+.welcome {
+    width: 100%;
+    height: 62.5vh;
+    padding-left: 6.667vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--border));
+    color: rgba(var(--text));
+}
+
+.welcome__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome__hero {
+    margin-bottom: 3.125vh;
+    font-size: 4.25rem;
+}
+
+.welcome__hero__mai {
+    color: rgba(var(--sandyBrown));
+}
+
+.welcome__hero__boutique {
+    color: rgba(var(--orange));
+}
+
+.welcome__description {
+    margin-bottom: 2.34vh;
+    font-size: 1.625rem;
+}
+
+.welcome__register {
+    width: fit-content;
+    padding: 1rem 2rem;
+    font-size: 1.625rem;
+    font-weight: bold;
+    background: rgba(var(--registerButtonBackground));
+    color: rgba(var(--darkText));
+    text-decoration: none;
+    transition: transform 150ms ease-in-out;
+}
+
+.welcome__register:hover {
+    transform: scale(1.05);
+}
+
+.welcome__image {
+    position: relative;
+    width: 41.67%;
+    height: 100%;
+    box-shadow: 0px 0px 28px 23px rgba(var(--background)) inset;
+    /* border-radius: 50px 0; */
+    overflow: hidden;
+}
+
+.welcome__image > img {
+    height: 100%;
+    position: relative;
+    z-index: -1;
+}
+
+/* Login Page */
+.login {
+    height: fit-content;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login__form {
+    width: 50vw;
+    flex-grow: 1;
+    padding: 4vh 5vw 0 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(var(--background));
+    color: rgba(var(--text));
+    border-left: 1px solid rgba(var(--border));
+    border-right: 1px solid rgba(var(--border));
+}
+
+.login__title {
+    margin-bottom: 2vh;
+    font-size: 4.25rem;
+}
+
+/* Register Page */
+.register {
+    height: fit-content;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.register__form {
+    width: 50vw;
+    padding: 4vh 5vw;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(var(--background));
+    color: rgba(var(--text));
+    border-left: 1px solid rgba(var(--border));
+    border-right: 1px solid rgba(var(--border));
+}
+
+.register__title {
+    margin-bottom: 2vh;
+    font-size: 4.25rem;
+}
+
+/* Login and Register Forms */
+.form {
+    width: 100%;
+    margin-bottom: 4vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+}
+
+.form__field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.form__field > label {
+    font-size: 1.625rem;
+}
+
+.form__field > input {
+    padding: 0.5rem 0.5rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(var(--border));
+    outline: none;
+    color: rgba(var(--text));
+    font-size: 1.625rem;
+    transition: padding 150ms ease-in-out;
+}
+
+.form__field > input:focus {
+    padding: 0.75rem 1rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form__field > input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form__field--remember {
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.form__field--remember > input {
+    width: 1.25rem;
+}
+
+.form__submit {
+    padding: 1vh 0;
+    font-family: var(--source);
+    font-size: 1.625rem;
+    font-weight: bold;
+    background: rgba(var(--registerButtonBackground));
+    color: rgba(var(--darkText));
+    text-decoration: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: transform 150ms ease-in-out;
+}
+
+.form__submit:focus,
+.form__submit:hover {
+    transform: scale(1.03);
+}
+
+.form-link__link {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgba(var(--yellow));
+}

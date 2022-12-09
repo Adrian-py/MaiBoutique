@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
                 ])->create();
             });
         });
-
         // User::create([
         //     "username" => "James Martin",
         //     "email" => "james_martin@gmail.com",
@@ -61,8 +60,5 @@ class DatabaseSeeder extends Seeder
         //     "role" => 0,
         // ]);
 
-
-        // CartDetail::factory()->count(10)->create();
-        // TransactionDetail::factory()->count(10)->create();
     }
 }
