@@ -18,6 +18,7 @@
     --text: var(--lemon);
     --darkText: var(--indigoDye);
     --registerButtonBackground: var(--yellow);
+    --warning: var(--orange);
 
     /* Fonts */
     --source: "Source Sans Pro", sans-serif;
@@ -210,11 +211,11 @@ nav {
     gap: 1vh;
 }
 
-.form__field > label {
+.form__label {
     font-size: 1.625rem;
 }
 
-.form__field > input {
+.form__input {
     padding: 0.5rem 0.5rem;
     background: none;
     border: none;
@@ -225,7 +226,7 @@ nav {
     transition: padding 150ms ease-in-out;
 }
 
-.form__field > input:focus {
+.form__input:focus {
     padding: 0.75rem 1rem;
 }
 
@@ -235,7 +236,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.form__field > input[type="number"] {
+.form__input[type="number"] {
     -moz-appearance: textfield;
 }
 
@@ -244,8 +245,13 @@ input::-webkit-inner-spin-button {
     gap: 1vw;
 }
 
-.form__field--remember > input {
+.form__input--remember {
     width: 1.25rem;
+}
+
+.form__error-message {
+    color: rgba(var(--warning));
+    font-size: 0.875rem; /* 14px */
 }
 
 .form__submit {
@@ -271,4 +277,8 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
     font-weight: bold;
     color: rgba(var(--yellow));
+}
+
+.form__is-invalid {
+    border-bottom: 1px solid rgba(var(--warning));
 }

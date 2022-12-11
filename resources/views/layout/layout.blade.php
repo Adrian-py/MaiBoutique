@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
     </head>
     <body>
-        @if($navbarFlag === true)
+        @if($navbarActive === true)
             @include("partials.navbar")
         @endif
 

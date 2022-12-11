@@ -5,21 +5,36 @@
         <div class="login__form">
             <h1 class="login__title">Sign In</h1>
 
+            {{-- if register successful --}}
+            @if(session()->has("success"))
+                <div class="login__message">
+                    <p>{{ session("success") }}</p>
+                </div>
+            @endif
+
             <form action="/login" method="POST" class="form">
                 @csrf
                 <div class="form__field form__field--email">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="Enter your email!" autofocus>
+                    <label for="email" class="form__label">Email</label>
+                    <input required type="email" name="email" placeholder="Enter your email!" autofocus class="form__input @error('email')form__is-invalid @enderror">
+
+                    @error("email")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form__field form__field--password">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="Enter your password!">
+                    <label for="password" class="form__label">Password</label>
+                    <input required type="password" name="password" placeholder="Enter your password!" class="form__input @error('password')form__is-invalid @enderror">
+
+                    @error("password")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form__field form__field--remember">
-                    <input type="checkbox" name="remember">
-                    <label for="remember">Remember Me</label>
+                    <input type="checkbox" name="remember" class="form__input form__input--remember">
+                    <label for="remember" >Remember Me</label>
                 </div>
 
                 <input type="submit" value="SIGN IN" class="form__submit">

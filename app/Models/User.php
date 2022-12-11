@@ -32,6 +32,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+     /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'role' => 0, // Default value of role for Members
+    ];
+
     /**
      * The attributes that should be cast.
      *

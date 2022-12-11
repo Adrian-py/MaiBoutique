@@ -8,29 +8,49 @@
             <form action="/register" method="POST" class="form">
                 @csrf
                 <div class="form__field form__field--username">
-                    <label for="username">Username</label>
-                    <input type="username" name="username" placeholder="Enter your username!" autofocus>
+                    <label for="username" class="form__label">Username</label>
+                    <input required type="username" name="username" placeholder="Enter your username!" autofocus class="form__input @error('username')form__is-invalid @enderror">
+
+                    @error("username")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form__field form__field--email">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="Enter your email!">
+                    <label for="email" class="form__label">Email</label>
+                    <input required type="email" name="email" placeholder="Enter your email!" class="form__input @error('email')form__is-invalid @enderror">
+
+                    @error("email")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form__field form__field--password">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="Enter your password!">
+                    <label for="password" class="form__label">Password</label>
+                    <input required type="password" name="password" placeholder="Enter your password!" class="form__input @error('password')form__is-invalid @enderror">
+
+                    @error("password")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="form__field form__field--phone">
-                    <label for="phone">Phone Number</label>
-                    <input type="number" name="phone" placeholder="Enter your phone number!">
+                    <label for="phone_number" class="form__label">Phone Number</label>
+                    <input required type="number" name="phone_number" placeholder="Enter your phone number!" class="form__input @error('phone_number')form__is-invalid @enderror">
+
+                    @error("phone_number")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
                 <div class="form__field form__field--address">
-                    <label for="address">Address</label>
-                    <input type="text" name="address" placeholder="Enter your address!">
+                    <label for="address" class="form__label">Address</label>
+                    <input required type="text" name="address" placeholder="Enter your address!" class="form__input @error('address')form__is-invalid @enderror">
+
+                    @error("address")
+                        <p class="form__error-message">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
