@@ -17,8 +17,10 @@
     --textButton: var(--yellow);
     --text: var(--lemon);
     --darkText: var(--indigoDye);
-    --registerButtonBackground: var(--yellow);
+    --lightButtonBackground: var(--yellow);
+    --darkButtonBackground: var(--orange);
     --warning: var(--orange);
+    --productBorder: var(--lemon);
 
     /* Fonts */
     --source: "Source Sans Pro", sans-serif;
@@ -41,6 +43,7 @@ body {
 /* 3. Login Page */
 /* 4. Register Page */
 /* 5. Login and Register Forms */
+/* 6. Home Page */
 
 /* Navbar */
 nav {
@@ -116,7 +119,7 @@ nav {
     padding: 1rem 2rem;
     font-size: 1.625rem;
     font-weight: bold;
-    background: rgba(var(--registerButtonBackground));
+    background: rgba(var(--lightButtonBackground));
     color: rgba(var(--darkText));
     text-decoration: none;
     transition: transform 150ms ease-in-out;
@@ -259,7 +262,7 @@ input::-webkit-inner-spin-button {
     font-family: var(--source);
     font-size: 1.625rem;
     font-weight: bold;
-    background: rgba(var(--registerButtonBackground));
+    background: rgba(var(--lightButtonBackground));
     color: rgba(var(--darkText));
     text-decoration: none;
     border: none;
@@ -281,4 +284,106 @@ input::-webkit-inner-spin-button {
 
 .form__is-invalid {
     border-bottom: 1px solid rgba(var(--warning));
+}
+
+/* Home Page */
+.home {
+    padding: 3rem 6.67vw;
+    display: flex;
+    flex-direction: column;
+    color: rgba(var(--text));
+}
+
+.home__title {
+    margin-bottom: 4vh;
+    font-size: 3rem;
+}
+
+.home__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(min-content, 1fr);
+    gap: 2em;
+}
+
+.product {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid rgba(var(--productBorder));
+    transition: transform 150ms ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.02);
+}
+
+.product__image {
+    width: 100%;
+}
+
+.product__desc {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.product__name {
+    font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product__price {
+    margin-bottom: 2vh;
+    font-size: 1.25rem;
+}
+
+.product__link {
+    padding: 1vh 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(var(--darkButtonBackground));
+    color: rgba(var(--text));
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 150ms ease-in-out;
+}
+
+.product__link:hover,
+.product__link:focus {
+    background: rgba(var(--lightButtonBackground));
+    color: rgba(var(--darkText));
+}
+
+.pagination {
+    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+
+.pagination__link {
+    text-decoration: none;
+    color: rgba(var(--text));
+}
+
+.pagination__pages {
+    display: flex;
+    gap: 1rem;
+}
+
+.pagination__page-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(var(--border));
+    text-decoration: none;
+    color: rgba(var(--text));
 }

@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             "role" => 1,
         ]);
 
-        Product::factory()->count(20)->create();
+        Product::factory()->count(100)->create();
 
         // Users with Member Role
         User::factory()->count(10)->create()->each(function($user){

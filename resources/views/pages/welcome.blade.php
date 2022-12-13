@@ -11,7 +11,7 @@
         </div>
 
         <div class="welcome__image">
-            <img src="{{ asset("/assets/images/welcome-image.jpg") }}" alt="Welcome Image">
+            <img src="{{ asset("/storage/images/welcome-image.jpg") }}" alt="Welcome Image">
         </div>
     </main>
 @endsection

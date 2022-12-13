@@ -49,7 +49,7 @@ Register User baru => buat table User, Cart, dan Transaction.
 (V) => Butuh validation
 ```
 
-1. Welcome Page
+1. Welcome Page ✅
 2. Sign In Page
 3. Register Page
 4. Home Page
@@ -62,3 +62,4 @@ Register User baru => buat table User, Cart, dan Transaction.
 11. Edit Password
 12. Add Item (Admin Only)
 13. Search Results Page
+
