@@ -1,5 +1,11 @@
 @extends("layout.layout")
 
+@section('title', 'Welcome')
+
+@section("navbar")
+    @include("partials.navbar")
+@endsection
+
 @section("content")
     <main class="welcome">
         <div class="welcome__text">

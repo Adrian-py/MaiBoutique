@@ -44,6 +44,7 @@ body {
 /* 4. Register Page */
 /* 5. Login and Register Forms */
 /* 6. Home Page */
+/* 7. Detail Page */
 
 /* Navbar */
 nav {
@@ -374,6 +375,11 @@ input::-webkit-inner-spin-button {
 .pagination__link {
     text-decoration: none;
     color: rgba(var(--text));
+    transition: text-decoration 150ms ease-in-out;
+}
+
+.pagination__link:hover {
+    text-decoration: underline;
 }
 
 .pagination__pages {
@@ -386,4 +392,149 @@ input::-webkit-inner-spin-button {
     border: 1px solid rgba(var(--border));
     text-decoration: none;
     color: rgba(var(--text));
+    transition: all 150ms ease-in-out;
+}
+
+.pagination__page-link:hover {
+    background: rgba(var(--border));
+    color: rgba(var(--darkText));
+}
+
+.pagination__page-link:active {
+    transform: scale(1.05);
+}
+
+/* Detail Page */
+.product-detail {
+    height: fit-content;
+    min-height: 100%;
+    padding: 4vh 6.67vw;
+    display: flex;
+    justify-content: space;
+    flex-direction: column;
+    color: rgba(var(--text));
+}
+
+.product-detail__header {
+    margin-bottom: 6vh;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+.product-detail__back {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgba(var(--text));
+    transition: transform 150ms ease-in-out;
+}
+
+.product-detail__back:hover,
+.product-detail__back:focus {
+    transform: scale(1.1);
+}
+
+.product-detail__title {
+    font-size: 2.5rem;
+}
+
+.product-detail__product {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 2vw;
+}
+
+.product-detail__image {
+    width: 30vw;
+}
+
+.product-detail__description {
+    min-width: 40vw;
+}
+
+.product-detail__name {
+    margin-bottom: 1vh;
+    font-size: 5rem;
+}
+
+.product-detail__price {
+    margin-bottom: 4vh;
+    font-size: 1.5rem;
+}
+
+.product-detail__description {
+    margin-bottom: 2vh;
+    font-size: 2rem;
+}
+
+.product-detail__description__content {
+    margin-bottom: 4vh;
+    font-size: 1.25rem;
+    font-family: var(--source);
+}
+
+.product-detail__quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.product-detail__quantity__label {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.product-detail__quantity__form {
+    height: 4rem;
+    display: flex;
+    gap: 2vh;
+}
+
+.product-detail__quantity__input {
+    width: 20rem;
+    height: 100%;
+    text-align: center;
+    outline: none;
+    border: 1px solid rgba(var(--border));
+    background: none;
+    color: rgba(var(--text));
+    font-family: var(--source);
+    font-size: 1.5rem;
+}
+
+.product-detail__quantity__submit {
+    height: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-weight: bold;
+    background: rgba(var(--lightButtonBackground));
+    color: rgba(var(--darkText));
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.product-detail__quantity__submit:hover {
+    transform: scale(1.02);
+}
+
+.product-detail__delete {
+    padding: 1rem 2rem;
+    border: none;
+    background: rgba(var(--orange));
+    color: rgba(var(--text));
+    font-size: 1.25rem;
+    font-family: var(--source);
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.product-detail__delete:hover {
+    transform: scale(1.05);
 }
