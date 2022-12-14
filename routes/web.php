@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +19,24 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    return view('pages.welcome', [
-        "page_title" => "Welcome",
-        "navbarActive" => true,
-    ]);
+    return view('pages.welcome');
 });
+// Laravel UI Routes
+Auth::routes();
 
-Route::get("/login", [LoginController::class, "index"]);
-Route::post("/login", [LoginController::class, "authenticate"]);
+// Login
+Route::get("/login", [LoginController::class, "index"])->name("login");
+Route::post("/login", [LoginController::class, "login"]);
 
-Route::get("/register", [RegisterController::class, "index"]);
+// Register
+Route::get("/register", [RegisterController::class, "index"])->name("register");
 Route::post("/register", [RegisterController::class, "store"]);
 
+
 // Homepage
-Route::get("/home", [HomeController::class, "index"]);
+Route::get("/home", [HomeController::class, "index"])->name("home");
+
+// Detail Page
+// ini masih error (slug column ??)
+Route::get("/product/{product:slug}", [ProductController::class, "index"]);
 

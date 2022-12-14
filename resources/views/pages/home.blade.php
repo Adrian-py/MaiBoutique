@@ -1,5 +1,11 @@
 @extends("layout.layout")
 
+@section('title', 'Home')
+
+@section('navbar')
+    @include('partials.navbar')
+@endsection
+
 @section("content")
     <main class="home">
         <h1 class="home__title">Find Your Best Clothes Here!</h1>
