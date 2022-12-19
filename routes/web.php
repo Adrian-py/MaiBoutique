@@ -37,6 +37,5 @@ Route::post("/register", [RegisterController::class, "store"]);
 Route::get("/home", [HomeController::class, "index"])->name("home");
 
 // Detail Page
-// ini masih error (slug column ??)
 Route::get("/product/{product:slug}", [ProductController::class, "index"]);
 

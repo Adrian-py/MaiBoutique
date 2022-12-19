@@ -1,5 +1,11 @@
 @extends("layout.layout")
 
+@section('title', 'Detail')
+
+@section('navbar')
+    @include('partials.navbar')
+@endsection
+
 @section("content")
     <main class="product-detail">
         <header class="product-detail__header">

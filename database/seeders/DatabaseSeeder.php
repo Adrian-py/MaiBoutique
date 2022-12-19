@@ -25,10 +25,11 @@ class DatabaseSeeder extends Seeder
         User::create([
             "username" => "Admin",
             "email" => "admin@gmail.com",
-            "password" => "admin123",
+            "password" => bcrypt("admin123"),
             "phone_number" => "081436821343",
             "address" => "Jl Ciledug Raya 8, Dki Jakarta",
             "role" => 1,
+            "remember_token" => "17LgSS4S4g",
         ]);
 
         Product::factory()->count(100)->create();
