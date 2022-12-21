@@ -595,3 +595,55 @@ input::-webkit-inner-spin-button {
 .product-detail__delete:hover {
     transform: scale(1.05);
 }
+
+/* Cart Page */
+.cart {
+    padding: 3rem 6.67vw;
+    color: rgba(var(--text));
+}
+
+.cart__header {
+    width: 100%;
+    margin-bottom: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart__title {
+    font-size: 3rem;
+}
+
+.cart__desc {
+    display: flex;
+    gap: 2rem;
+}
+
+.cart__total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart__checkout {
+    padding: 2vh 2rem;
+    background: rgba(var(--darkButtonBackground));
+    color: rgba(var(--text));
+    transition: all 150ms ease-in-out;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cart__checkout:hover,
+.cart__checkout:focus {
+    background: rgba(var(--lightButtonBackground));
+    color: rgba(var(--darkText));
+    transform: scale(1.05);
+}
+
+.cart__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(min-content, 1fr);
+    gap: 2em;
+}

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\User;
 use App\Models\CartDetail;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,19 +16,17 @@ class CartController extends Controller
     }
 
     public function index(){
-        $cartItems = TransactionDetail::where("transaction_id", Transaction::where("user_id", Auth::user()->id)->first()->id)->first();
+        $cartItems = CartDetail::where("cart_id", Cart::where("user_id", Auth::user()->id)->first()->id)->get();
 
-        @dd($cartItems->products);
         $totalQuantity = 0;
-
         foreach($cartItems as $item){
             $totalQuantity += $item->quantity;
         }
 
         return view("pages.cart", [
-            "price" => "",
+            "price" => 0,
             "quantity" => $totalQuantity,
-            "cartItems" => $cartItems,
+            // "cartItems" => $cartItems,
         ]);
     }
 }
