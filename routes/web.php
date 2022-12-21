@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('pages.welcome');
-});
+})->middleware("guest");
 // Laravel UI Routes
 Auth::routes();
 
@@ -38,4 +39,7 @@ Route::get("/home", [HomeController::class, "index"])->name("home");
 
 // Detail Page
 Route::get("/product/{product:slug}", [ProductController::class, "index"]);
+
+// Cart Page
+Route::get("/cart", [CartController::class, "index"]);
 

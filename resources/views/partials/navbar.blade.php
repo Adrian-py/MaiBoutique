@@ -12,7 +12,7 @@
                 <li class="nav-links__link"><a href="#">Search</a></li>
 
                 @if(!Auth::user()->role)
-                    <li class="nav-links__link"><a href="#">Cart</a></li>
+                    <li class="nav-links__link"><a href="/cart">Cart</a></li>
                     <li class="nav-links__link"><a href="#">History</a></li>
                 @endif
 

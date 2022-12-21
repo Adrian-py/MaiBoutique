@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Models\Cart;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -57,7 +59,15 @@ class RegisterController extends Controller
 
         $validated["password"] = bcrypt($validated["password"]);
 
-        User::create($validated);
+        $newUser = User::create($validated);
+
+        Cart::create([
+            "user_id" => $newUser->id,
+        ]);
+
+        Transaction::create([
+            "user_id" => $newUser->id,
+        ]);
 
         return redirect("/login")->with("success", "Register Successful! Please Login.");
     }
