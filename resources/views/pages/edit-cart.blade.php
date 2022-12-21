@@ -15,7 +15,7 @@
                 </svg>
                 Back
             </a>
-            <h1 class="product-detail__title">Product Detail</h1>
+            <h1 class="product-detail__title">Edit Cart</h1>
         </header>
         <div class="product-detail__product">
             <img src={{ asset("/storage/images/$product->image") }} alt="" class="product-detail__image">
@@ -25,10 +25,12 @@
                 <h3 class="product-detail__description">Product Detail</h3>
                 <p class="product-detail__description__content">{{ $product->description }}</p>
 
-                <form method="POST" action="/product" class="product-detail__quantity">
+                <form method="POST" action="/cart/edit/{{$product->slug}}" class="product-detail__quantity">
+                    @csrf
                     <label for="quantity" class="product-detail__quantity__label">Quantity</label>
+
                     <div class="product-detail__quantity__form">
-                        <input type="number" value="0" class="product-detail__quantity__input" min="0" placeholder="0">
+                        <input type="number" value="0" class="product-detail__quantity__input" min="0" placeholder="0" name="quantity">
 
                         <button class="product-detail__quantity__submit" type="submit">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,9 +42,11 @@
                 </form>
 
                 {{-- Admin Only --}}
-                {{-- <form action="/product/delete" method="POST">
-                    <button type="submit" class="product-detail__delete">DELETE ITEM</button>
-                </form> --}}
+                @if(Auth::user()->role === 1)
+                    <form action="/product/delete" method="POST">
+                        <button type="submit" class="product-detail__delete">DELETE ITEM</button>
+                    </form>
+                @endif
             </div>
         </div>
     </main>

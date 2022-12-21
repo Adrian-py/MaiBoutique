@@ -42,4 +42,6 @@ Route::get("/product/{product:slug}", [ProductController::class, "index"]);
 
 // Cart Page
 Route::get("/cart", [CartController::class, "index"]);
-
+Route::post("/cart/add", [CartController::class, "add"]);
+Route::get("/cart/edit/{product:slug}", [CartController::class, "edit"]);
+Route::post("/cart/edit/{product:slug}", [CartController::class, "update"]);

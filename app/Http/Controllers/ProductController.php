@@ -9,10 +9,7 @@ class ProductController extends Controller
 {
     //
     public function index(Product $product){
-        // dd($product);
-        return view("pages.detail", [
-            "page_title" =>"Product " . $product->name,
-            "navbarActive" => true,
+        return view("pages.product", [
             "product" => $product,
         ]);
     }
