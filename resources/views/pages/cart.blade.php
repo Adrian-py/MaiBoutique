@@ -22,6 +22,7 @@
                 <div class="product__desc product__desc--cart">
                     <h3 class="product__name">test</h3>
                     <p class="product__price">Rp. 12038</p>
+
                     <div class="cart-product__buttons">
                         <a href="/cart/edit/shirt-21" class="cart-product__button cart-product__button--edit">Edit</a>
                         <a href="/product/remove" class="cart-product__button cart-product__button--remove">Remove</a>

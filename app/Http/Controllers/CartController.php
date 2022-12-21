@@ -21,12 +21,11 @@ class CartController extends Controller
         Display Cart Items
     */
     public function index(){
-        $cartItems = CartDetail::where("cart_id", Cart::where("user_id", Auth::user()->id)->first()->id)->with("product")->get();
+        $cartItems = CartDetail::where("cart_id", Cart::where("user_id", Auth::user()->id)->first()->id)->get();
 
         $totalQuantity = 0;
         foreach($cartItems as $item){
-            echo $item;
-            // $totalQuantity += $item->quantity;
+            $totalQuantity += $item->quantity;
         }
 
         return view("pages.cart", [
@@ -55,8 +54,11 @@ class CartController extends Controller
         Display edit cart page
     */
     public function edit(Product $product){
-        return view("pages.product", [
+        $cartID = Cart::where("user_id", Auth::user()->id)->first()->id;
+
+        return view("pages.edit-cart", [
             "product" => $product,
+            "quantity" => CartDetail::where("cart_id", $cartID)->where("product_id", $product->id)->first()->quantity,
         ]);
     }
 
@@ -65,6 +67,10 @@ class CartController extends Controller
         Update cart item quantity
     */
     public function update(Product $product, Request $request){
-        CartDetail::where("id", $product->id)->update(["quantity" => $request->quantity]);
+        $cartID = Cart::where("user_id", Auth::user()->id)->first()->id;
+
+        CartDetail::where("cart_id", $cartID)->where("product_id", $product->id)->update(["quantity" => $request->quantity]);
+
+        return redirect('/cart');
     }
 }
