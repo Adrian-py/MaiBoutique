@@ -11,13 +11,17 @@ class CartDetail extends Model
 
     protected $guarded = [
         'id',
-      ];
+    ];
+
+    protected $with = [
+        'product'
+    ];
 
     public function cart(){
         return $this->belongsTo(Cart::class);
     }
 
     public function product(){
-        return $this->hasOne(Product::class, "product_id");
+        return $this->belongsTo(Product::class);
     }
 }

@@ -8,14 +8,13 @@
     @auth
         <div class="nav__content">
             <ul class="nav-links">
-                <li class="nav-links__link"><a href="/home">Home</a></li>
+                <li class="nav-links__link"><a href="{{ route('home') }}">Home</a></li>
                 <li class="nav-links__link"><a href="#">Search</a></li>
 
                 @if(!Auth::user()->role)
-                    <li class="nav-links__link"><a href="/cart">Cart</a></li>
-                    <li class="nav-links__link"><a href="#">History</a></li>
+                    <li class="nav-links__link"><a href="{{ route('view-cart') }}">Cart</a></li>
+                    <li class="nav-links__link"><a href="{{ route('view-transaction') }}">History</a></li>
                 @endif
-
                 <li class="nav-links__link"><a href="#">Profile</a></li>
             </ul>
 
@@ -25,12 +24,11 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-
                         Add Item
                     </a>
                 @endif
                 <a class="nav__user" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Log out
+                    Sign out
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 17C6 17.93 6 18.395 6.10222 18.7765C6.37962 19.8117 7.18827 20.6204 8.22354 20.8978C8.60504 21 9.07003 21 10 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H10C9.07003 3 8.60504 3 8.22354 3.10222C7.18827 3.37962 6.37962 4.18827 6.10222 5.22354C6 5.60504 6 6.07003 6 7M12 8L16 12M16 12L12 16M16 12H3" stroke="#F4D35E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -42,7 +40,7 @@
         </div>
     @else
         <div class="nav__content nav__content--guest">
-            <a href="/login" class="nav__user">
+            <a href="{{ route('view-login') }}" class="nav__user">
                 Sign In
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 17C6 17.93 6 18.395 6.10222 18.7765C6.37962 19.8117 7.18827 20.6204 8.22354 20.8978C8.60504 21 9.07003 21 10 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H10C9.07003 3 8.60504 3 8.22354 3.10222C7.18827 3.37962 6.37962 4.18827 6.10222 5.22354C6 5.60504 6 6.07003 6 7M12 8L16 12M16 12L12 16M16 12H3" stroke="#F4D35E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
