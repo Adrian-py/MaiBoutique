@@ -25,7 +25,7 @@
                 <h3 class="product-detail__description">Product Detail</h3>
                 <p class="product-detail__description__content">{{ $product->description }}</p>
 
-                @if($user_cart_detail)
+                @if(isset($user_cart_detail))
                     <form method="POST" action="{{ route('edit-cart', [$product]) }}" class="product-detail__quantity">
                         @csrf
                         <label for="quantity" class="product-detail__quantity__label">Quantity</label>

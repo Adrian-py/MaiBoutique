@@ -44,11 +44,11 @@ Route::middleware(['auth'])->group(function() {
 
     // Homepage
     Route::get("/home", [HomeController::class, "index"])->name("home");
-    
+
     // Create product page (admin only)
     Route::middleware(['admin'])->group(function() {
         // add view
-        // .... 
+        // ....
     });
 
     // Detail Page
@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('cart')->group(function(){
         Route::get("/", [CartController::class, "index"])->name('view-cart');
         Route::post("/add", [CartController::class, "add"])->name('add-cart');
-        Route::get("/edit/{product:slug}", [CartController::class, "edit"]); // apakah ini perlu (?)
+        Route::get("/edit/{product:slug}", [CartController::class, "edit"])->name('view-edit-cart');
         Route::post("/edit/{product:slug}", [CartController::class, "update"])->name('edit-cart');
         Route::post("/delete/{product:slug}", [CartController::class, "delete"])->name('delete-cart');
         Route::post("/checkout", [CartController::class, "checkout"])->name("checkout");

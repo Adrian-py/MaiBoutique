@@ -35,7 +35,7 @@
                         <p>Qty: {{ $cart_detail->quantity }}</p>
 
                         <div class="cart-product__buttons">
-                            <a href="{{ route('view-product', Str::slug($cart_detail->product->name))}}" class="cart-product__button cart-product__button--edit">Edit</a>
+                            <a href="{{ route('view-edit-cart', Str::slug($cart_detail->product->name))}}" class="cart-product__button cart-product__button--edit">Edit</a>
 
                             <form action="{{ route('delete-cart', Str::slug($cart_detail->product->name)) }}" method="POST" class="cart-product__button cart-product__button--remove">
                                 @csrf

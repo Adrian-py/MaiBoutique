@@ -21,6 +21,8 @@
     --darkButtonBackground: var(--orange);
     --warning: var(--orange);
     --productBorder: var(--lemon);
+    --memberColor: var(--yellow);
+    --adminColor: var(--orange);
 
     /* Fonts */
     --source: "Source Sans Pro", sans-serif;
@@ -52,6 +54,7 @@ body {
 /* 7. Detail Page */
 /* 8. Cart Page */
 /* 9. Transaction History Page */
+/* 10. Profile Page */
 
 /* Navbar */
 nav {
@@ -744,4 +747,83 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.transaction__quantity,
+.transaction__name {
+    margin-right: 1rem;
+}
+
+.transaction__total__num {
+    font-weight: bold;
+}
+
+/* Profile Page */
+.profile {
+    padding: 3rem 6.67vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgba(var(--text));
+    text-align: center;
+}
+
+.profile__title {
+    margin-bottom: 4vh;
+    font-size: 3rem;
+}
+
+.profile__role {
+    margin-bottom: 2vh;
+    padding: 1vh 1rem;
+    background: rgba(var(--memberColor));
+    color: rgba(var(--darkText));
+}
+
+.profile__role--admin {
+    background: rbga(var(--adminColor));
+    color: rgba(var(--text));
+}
+
+.profile__detail {
+    margin-bottom: 1.5vh;
+}
+
+.profile__detail:last-of-type {
+    margin-bottom: 4vh;
+}
+
+.profile__detail__value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.profile__buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile__edit-button {
+    width: 10rem;
+    padding: 1rem 0;
+    background: rgba(var(--lightButtonBackground));
+    border: 1px solid none;
+    font-family: var(--montserrat);
+    font-weight: bold;
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(var(--darkText));
+    outline: none;
+}
+
+.profile__edit-button--password {
+    background: rgba(var(--darkButtonBackground));
+    color: rgba(var(--text));
+}
+
+.profile__edit-button:hover,
+.profile__edit-button:focus {
+    transform: scale(1.05);
 }

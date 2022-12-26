@@ -21,7 +21,12 @@ class CartController extends Controller
         $user_cart = Cart::find($cart_id);
         $cart_details = $user_cart->cartDetails();
         $total_quantity = $cart_details->sum('quantity');
-        $total_price = $user_cart->products()->sum('price');
+
+        // Calculate total price
+        $total_price = 0;
+        foreach($user_cart->cartDetails as $cart_detail){
+            $total_price += $cart_detail->product->price * $cart_detail->quantity;
+        }
 
         return view("pages.cart", [
             "total_quantity" => $total_quantity,
@@ -42,11 +47,21 @@ class CartController extends Controller
             "quantity" => 'required|numeric|gt:0',
         ]);
 
-        CartDetail::create([
-            "cart_id" => Cart::where("user_id", Auth::user()->id)->first()->id,
-            "product_id" => $validated["product_id"],
-            "quantity" => $validated["quantity"],
-        ]);
+        $current_cart = Cart::current()->first();
+        $existing_cart_detail = CartDetail::where("cart_id", $current_cart->id)->where("product_id", $request->product_id);
+
+        // Check if product already in cart
+        if($existing_cart_detail->exists()){
+            $existing_cart_detail->update([
+                "quantity" => $existing_cart_detail->first()->quantity + $request->quantity,
+            ]);
+        }else{
+            CartDetail::create([
+                "cart_id" => $current_cart->id,
+                "product_id" => $validated["product_id"],
+                "quantity" => $validated["quantity"],
+            ]);
+        }
 
         return redirect()->back()->with("add-success", "Product successfully added to cart!");
     }
@@ -58,11 +73,12 @@ class CartController extends Controller
 
     */
     public function edit(Product $product){
-        $cartID = Cart::where("user_id", Auth::user()->id)->first()->id;
+        $cart_id = Cart::current()->first()->id;
+        $user_cart_detail = $product->cartDetail()->where('cart_id', $cart_id)->first();
 
-        return view("pages.edit-cart", [
+        return view("pages.product", [
             "product" => $product,
-            "quantity" => CartDetail::where("cart_id", $cartID)->where("product_id", $product->id)->first()->quantity,
+            "user_cart_detail" => $user_cart_detail,
         ]);
     }
 
@@ -82,7 +98,7 @@ class CartController extends Controller
             "quantity" => $validated["quantity"]
         ]);
 
-        return redirect()->back();
+        return redirect("/cart");
     }
 
 
@@ -131,8 +147,8 @@ class CartController extends Controller
             $cart_details->delete();
 
             return redirect()->back()->with('message', 'Successfully checkout!');
-        } else{
-            return redirect()->back()->with('message', 'There is no product in the cart!');
         }
+
+        return redirect()->back()->with('message', 'There is no product in the cart!');
     }
 }

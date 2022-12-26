@@ -22,13 +22,13 @@
 
                                 <span class="transaction__name">{{ $transaction_detail->product->name}}</span>
 
-                                <span class="transaction__price">{{ $transaction_detail->product->price}}</span>
+                                <span class="transaction__price">Rp. {{ $transaction_detail->product->price}}</span>
                             </li>
                         @endforeach
                     </ul>
 
                     {{-- Will change this later --}}
-                    <p>Total Price: 69.000</p>
+                    <p class="transaction__total">Total Price: <span class="transaction__total__num">Rp. {{ $transaction->total_price }}</span></p>
                 </div>
             @endforeach
         </div>
