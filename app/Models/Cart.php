@@ -20,4 +20,9 @@ class Cart extends Model
     public function cartDetails(){
         return $this->hasMany(CartDetail::class);
     }
+
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, CartDetail::class, 'cart_id', 'id', 'id', 'product_id');
+    }
 }

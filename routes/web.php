@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,29 +20,47 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.welcome');
-})->middleware("guest");
-// Laravel UI Routes
-Auth::routes();
+// All members (not logged in)
+Route::middleware(['guest'])->group(function() {
+    // Welcome page
+    Route::get('/', function () {
+        return view('pages.welcome');
+    });
 
-// Login
-Route::get("/login", [LoginController::class, "index"])->name("login");
-Route::post("/login", [LoginController::class, "login"]);
+    // Login
+    Route::get("/login", [LoginController::class, "index"])->name("view-login");
+    Route::post("/login", [LoginController::class, "login"])->name("login");
 
-// Register
-Route::get("/register", [RegisterController::class, "index"])->name("register");
-Route::post("/register", [RegisterController::class, "store"]);
+    // Register
+    Route::get("/register", [RegisterController::class, "index"])->name("view-register");
+    Route::post("/register", [RegisterController::class, "register"])->name("register");
+});
 
+// All authenticated users (members & admins)
+Route::middleware(['auth'])->group(function() {
+    // Logout
+    Route::post('/logout', [LogoutController::class, "logout"])->name("logout");
 
-// Homepage
-Route::get("/home", [HomeController::class, "index"])->name("home");
+    // Homepage
+    Route::get("/home", [HomeController::class, "index"])->name("home");
+    
+    // Detail Page
+    Route::get("/product/{product:slug}", [ProductController::class, "index"])->name("view-product");
 
-// Detail Page
-Route::get("/product/{product:slug}", [ProductController::class, "index"]);
+    // Cart Page
+    Route::prefix('cart')->group(function(){
+        Route::get("/", [CartController::class, "index"])->name('view-cart');
+        Route::post("/add", [CartController::class, "add"])->name('add-cart');
+        Route::get("/edit/{product:slug}", [CartController::class, "edit"]); // apakah ini perlu (?)
+        Route::post("/edit/{product:slug}", [CartController::class, "update"])->name('edit-cart');
+        Route::post("/delete/{product:slug}", [CartController::class, "delete"])->name('delete-cart');
+        Route::post("/checkout", [CartController::class, "checkout"])->name("checkout");
+    });
 
-// Cart Page
-Route::get("/cart", [CartController::class, "index"]);
-Route::post("/cart/add", [CartController::class, "add"]);
-Route::get("/cart/edit/{product:slug}", [CartController::class, "edit"]);
-Route::post("/cart/edit/{product:slug}", [CartController::class, "update"]);
+    // Transaction Page
+    Route::prefix('transaction')->group(function(){
+        Route::get("/", [TransactionController::class, "index"])->name('view-transaction');
+    });
+});
+
+// Admin only (add this if needed)
