@@ -827,3 +827,34 @@ input::-webkit-inner-spin-button {
 .profile__edit-button:focus {
     transform: scale(1.05);
 }
+
+/* Edit Profile */
+.edit-profile {
+    padding: 3rem 6.67vw;
+    color: rgba(var(--text));
+}
+
+.edit-profile__header {
+    margin-bottom: 4vh;
+    display: flex;
+    gap: 2rem;
+}
+
+.edit-profile__back {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgba(var(--text));
+    transition: transform 150ms ease-in-out;
+}
+
+.edit-profile__back:hover,
+.edit-profile__back:focus {
+    transform: scale(1.1);
+}
+
+.edit-profile__title {
+    font-size: 2.5rem;
+}
