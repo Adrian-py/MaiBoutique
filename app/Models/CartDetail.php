@@ -13,10 +13,6 @@ class CartDetail extends Model
         'id',
     ];
 
-    protected $with = [
-        'product'
-    ];
-
     public function cart(){
         return $this->belongsTo(Cart::class);
     }

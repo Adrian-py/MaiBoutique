@@ -26,7 +26,7 @@ class RegisterController extends Controller
         Cart::create([
             "user_id" => $newUser->id,
         ]);
-        
+
         // harusnya jgn dibuat dulu
         // Transaction::create([
         //     "user_id" => $newUser->id,

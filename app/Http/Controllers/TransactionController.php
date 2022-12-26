@@ -13,8 +13,8 @@ class TransactionController extends Controller
         $user_id = Auth::user()->id;
         $user_transactions = Transaction::where('user_id', $user_id)->with('transactionDetails', function($query){
             return $query->with('product');
-        })->get();
-        // dd($user_transactions);
+        })->withSum('products as total_price', 'price')->get();
+        
         return view("pages.transaction", [
             'transactions' => $user_transactions
         ]);

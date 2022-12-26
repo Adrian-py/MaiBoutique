@@ -17,8 +17,7 @@
                         <li>{{$transaction_detail->quantity}} {{ $transaction_detail->product->name}} {{ $transaction_detail->product->name}}</li>
                     @endforeach
                 </ul>
-                {{-- Will change this later --}}
-                <p>Total Price: 69.000</p>
+                <p>Total Price: {{$transaction->total_price}}</p>
             </div>
         @endforeach
     </main>

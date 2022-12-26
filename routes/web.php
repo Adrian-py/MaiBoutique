@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -44,6 +45,12 @@ Route::middleware(['auth'])->group(function() {
     // Homepage
     Route::get("/home", [HomeController::class, "index"])->name("home");
     
+    // Create product page (admin only)
+    Route::middleware(['admin'])->group(function() {
+        // add view
+        // .... 
+    });
+
     // Detail Page
     Route::get("/product/{product:slug}", [ProductController::class, "index"])->name("view-product");
 
@@ -61,6 +68,12 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('transaction')->group(function(){
         Route::get("/", [TransactionController::class, "index"])->name('view-transaction');
     });
-});
 
-// Admin only (add this if needed)
+    Route::prefix('profile')->group(function(){
+        Route::get("/", [ProfileController::class, "index"])->name('view-profile');
+        Route::get("/edit/profile", [ProfileController::class, "editProfile"])->name('view-edit-profile');
+        Route::post("/edit/profile", [ProfileController::class, "updateProfile"])->name('edit-profile');
+        Route::get("/edit/password", [ProfileController::class, "editPassword"])->name('view-edit-password');
+        Route::post("/edit/password", [ProfileController::class, "updatePassword"])->name('edit-password');
+    });
+});
