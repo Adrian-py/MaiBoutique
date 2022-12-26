@@ -14,6 +14,7 @@ class TransactionController extends Controller
         $user_transactions = Transaction::where('user_id', $user_id)->with('transactionDetails', function($query){
             return $query->with('product');
         })->get();
+
         // dd($user_transactions);
         return view("pages.transaction", [
             'transactions' => $user_transactions

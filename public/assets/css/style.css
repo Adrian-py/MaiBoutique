@@ -51,6 +51,7 @@ body {
 /* 6. Home Page */
 /* 7. Detail Page */
 /* 8. Cart Page */
+/* 9. Transaction History Page */
 
 /* Navbar */
 nav {
@@ -704,4 +705,43 @@ input::-webkit-inner-spin-button {
 
 .cart-product__button:hover {
     transform: scale(1.05);
+}
+
+/* Transaction History Page */
+.transaction {
+    padding: 3rem 6.67vw;
+    color: rgba(var(--text));
+}
+
+.transaction__title {
+    margin-bottom: 4vh;
+    font-size: 3rem;
+}
+
+.transaction__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.transaction__item {
+    padding: 2rem 4vw;
+    border: 1px solid rgba(var(--border));
+}
+
+.transaction__created {
+    margin-bottom: 2vh;
+    font-size: 1.5rem;
+}
+
+.transaction__created__label {
+    font-size: 1.25rem;
+    font-weight: normal;
+}
+
+.transaction__products {
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
