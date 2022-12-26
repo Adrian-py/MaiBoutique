@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cart extends Model
 {
@@ -21,8 +22,12 @@ class Cart extends Model
         return $this->hasMany(CartDetail::class);
     }
 
-    public function products()
-    {
+    public function products(){
         return $this->hasManyThrough(Product::class, CartDetail::class, 'cart_id', 'id', 'id', 'product_id');
+    }
+
+    // Retrieve cart of current logged in user
+    public function scopeCurrent($query){
+        return $query->where("user_id", "=", Auth::user()->id);
     }
 }

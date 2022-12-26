@@ -37,6 +37,11 @@ body {
     font-family: var(--montserrat);
 }
 
+/* Global Styles */
+.hidden {
+    display: none;
+}
+
 /* Table Of Contents */
 /* 1. Navbar */
 /* 2. Welcome Page */
@@ -45,6 +50,7 @@ body {
 /* 5. Login and Register Forms */
 /* 6. Home Page */
 /* 7. Detail Page */
+/* 8. Cart Page */
 
 /* Navbar */
 nav {
@@ -626,13 +632,20 @@ input::-webkit-inner-spin-button {
     align-items: center;
 }
 
+.cart__total__label {
+    margin-right: 1rem;
+    font-weight: normal;
+}
+
 .cart__checkout {
     padding: 2vh 2rem;
     background: rgba(var(--darkButtonBackground));
     color: rgba(var(--text));
     transition: all 150ms ease-in-out;
+    font-family: var(--montserrat);
     font-weight: bold;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .cart__checkout:hover,
@@ -654,6 +667,7 @@ input::-webkit-inner-spin-button {
 }
 
 .cart-product__buttons {
+    margin-top: 2vh;
     display: flex;
     justify-content: space-around;
     gap: 0.5rem;
@@ -671,14 +685,23 @@ input::-webkit-inner-spin-button {
 }
 
 .cart-product__button--remove {
+    padding: 0;
     background: rgba(var(--darkButtonBackground));
+}
+
+.cart-product__button--remove > input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-family: var(--montserrat);
+    font-weight: bold;
     color: rgba(var(--text));
+    cursor: pointer;
 }
 
 .cart-product__button:hover {
     transform: scale(1.05);
-}
-
-.hidden {
-    display: none;
 }

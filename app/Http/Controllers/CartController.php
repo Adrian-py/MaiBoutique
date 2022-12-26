@@ -11,35 +11,52 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    // Display Cart Items
+    /*
+
+    Display Cart Items
+
+    */
     public function index(){
-        $user_id = Auth::user()->id;
-        $cart_id = Cart::where('user_id', $user_id)->first()->id;
+        $cart_id = Cart::current()->first()->id;
         $user_cart = Cart::find($cart_id);
         $cart_details = $user_cart->cartDetails();
         $total_quantity = $cart_details->sum('quantity');
         $total_price = $user_cart->products()->sum('price');
+
         return view("pages.cart", [
             "total_quantity" => $total_quantity,
             "total_price" => $total_price,
             "cart_details" => $cart_details->get(),
         ]);
     }
-    // Add new Item to Cart
+
+
+    /*
+
+     Add new Item to Cart
+
+    */
     public function add(Request $request){
         $validated = $request->validate([
             "product_id" => 'required',
             "quantity" => 'required|numeric|gt:0',
         ]);
+
         CartDetail::create([
             "cart_id" => Cart::where("user_id", Auth::user()->id)->first()->id,
             "product_id" => $validated["product_id"],
             "quantity" => $validated["quantity"],
         ]);
+
         return redirect()->back()->with("add-success", "Product successfully added to cart!");
     }
 
-    // Display edit cart page
+
+    /*
+
+    Display edit cart page
+
+    */
     public function edit(Product $product){
         $cartID = Cart::where("user_id", Auth::user()->id)->first()->id;
 
@@ -49,38 +66,55 @@ class CartController extends Controller
         ]);
     }
 
-    //  Update cart item quantity
+
+    /*
+
+    Update cart item quantity
+
+    */
     public function update(Product $product, Request $request){
         $validated = $request->validate([
             "quantity" => 'required|numeric|gt:0',
         ]);
-        $user_id = Auth::user()->id;
-        $cart_id = Cart::where('user_id', $user_id)->first()->id;
+
+        $cart_id = Cart::current()->first()->id;
         $product->cartDetail()->where('cart_id', $cart_id)->update([
             "quantity" => $validated["quantity"]
         ]);
+
         return redirect()->back();
     }
 
-    //  Delete cart item
+
+    /*
+
+    Delete cart item
+
+    */
     public function delete(Product $product){
-        $user_id = Auth::user()->id;
-        $cart_id = Cart::where('user_id', $user_id)->first()->id;
+        $cart_id = Cart::current()->first()->id;
         $product->cartDetail()->where('cart_id', $cart_id)->delete();
+
         return redirect()->back();
     }
 
-    // Checkout
+
+    /*
+
+    Checkout
+
+    */
     public function checkout(){
         $user_id = Auth::user()->id;
-        $cart_id = Cart::where('user_id', $user_id)->first()->id;
-        $user_cart = Cart::find($cart_id);
+        $user_cart = Cart::current()->first();
         $cart_details = $user_cart->cartDetails();
+
         if($cart_details->exists()){
             // Create new transaction
             $transaction = Transaction::create([
                 'user_id' => $user_id,
             ]);
+
             // Create an array of transaction details
             $transaction_details = [];
             foreach($cart_details->get() as $cart_detail){
@@ -89,10 +123,13 @@ class CartController extends Controller
                     'quantity' => $cart_detail->quantity,
                 ]);
             }
+
             // Insert all transaction details
             $transaction->transactionDetails()->createMany($transaction_details);
+
             // delete all cart details
             $cart_details->delete();
+
             return redirect()->back()->with('message', 'Successfully checkout!');
         } else{
             return redirect()->back()->with('message', 'There is no product in the cart!');

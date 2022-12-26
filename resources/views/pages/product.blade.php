@@ -39,6 +39,7 @@
                                 Update Cart
                             </button>
                         </div>
+
                         @error('quantity')
                             <p class="form__error-message">{{ $message }}</p>
                         @enderror
@@ -60,11 +61,13 @@
                                 ADD TO CART
                             </button>
                         </div>
+
                         @error('quantity')
                             <p class="form__error-message">{{ $message }}</p>
                         @enderror
                     </form>
                 @endif
+
                 {{-- Admin Only --}}
                 @if(Auth::user()->role === 1)
                     <form action="/product/delete" method="POST">
