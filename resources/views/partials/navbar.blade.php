@@ -15,7 +15,7 @@
                     <li class="nav-links__link"><a href="{{ route('view-cart') }}">Cart</a></li>
                     <li class="nav-links__link"><a href="{{ route('view-transaction') }}">History</a></li>
                 @endif
-                <li class="nav-links__link"><a href="#">Profile</a></li>
+                <li class="nav-links__link"><a href="{{ route('view-profile') }}">Profile</a></li>
             </ul>
 
             <div class="nav-links__right">
