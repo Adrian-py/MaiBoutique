@@ -21,7 +21,7 @@
             <img src={{ asset("/storage/images/$product->image") }} alt="" class="product-detail__image">
             <div class="product-detail__description">
                 <h2 class="product-detail__name">{{ $product->name }}</h2>
-                <h4 class="product-detail__price">Rp. {{ $product->price }}</h4>
+                <h4 class="product-detail__price">Rp. {{ number_format($product->price, 2) }}</h4>
                 <h3 class="product-detail__description">Product Detail</h3>
                 <p class="product-detail__description__content">{{ $product->description }}</p>
 

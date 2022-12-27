@@ -11,7 +11,7 @@
         <div class="cart__header">
             <h1 class="cart__title">My Cart</h1>
             <div class="cart__desc">
-                <h2 class="cart__total"><span class="cart__total__label">Total Price: </span> Rp. {{ $total_price }}</h2>
+                <h2 class="cart__total"><span class="cart__total__label">Total Price: </span> Rp. {{ number_format($total_price, 2) }}</h2>
                 <form action="{{ route('checkout') }}" method="POST">
                     @csrf
                     <input type="submit" value="Checkout ({{ $total_quantity }})" class="cart__checkout">
@@ -31,7 +31,7 @@
 
                     <div class="product__desc product__desc--cart">
                         <h3 class="product__name">{{ $cart_detail->product->name }}</h3>
-                        <p class="product__price">Rp. {{ $cart_detail->product->price }}</p>
+                        <p class="product__price">Rp. {{ number_format($cart_detail->product->price, 2) }}</p>
                         <p>Qty: {{ $cart_detail->quantity }}</p>
 
                         <div class="cart-product__buttons">
