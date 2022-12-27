@@ -9,7 +9,7 @@
         <div class="nav__content">
             <ul class="nav-links">
                 <li class="nav-links__link"><a href="{{ route('home') }}">Home</a></li>
-                <li class="nav-links__link"><a href="#">Search</a></li>
+                <li class="nav-links__link"><a href="{{route('search')}}">Search</a></li>
 
                 @if(!Auth::user()->role)
                     <li class="nav-links__link"><a href="{{ route('view-cart') }}">Cart</a></li>

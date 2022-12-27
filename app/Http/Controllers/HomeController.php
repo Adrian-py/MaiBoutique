@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('pages.home', [
-            "productList" => Product::paginate(8)->onEachSide(4),
+            "productList" => Product::paginate(8),
         ]);
     }
 }

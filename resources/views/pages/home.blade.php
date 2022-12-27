@@ -21,7 +21,7 @@
                 </div>
             @endforeach
         </section>
-        {{-- {{ $productList->links() }} --}}
+
         <div class="pagination">
             <a href="{{ $productList->previousPageUrl() }}" class="pagination__link">Previous</a>
             <div class="pagination__pages">

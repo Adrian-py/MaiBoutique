@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -69,11 +70,16 @@ Route::middleware(['auth'])->group(function() {
         Route::get("/", [TransactionController::class, "index"])->name('view-transaction');
     });
 
+    // Profile Page
     Route::prefix('profile')->group(function(){
         Route::get("/", [ProfileController::class, "index"])->name('view-profile');
         Route::get("/edit/profile", [ProfileController::class, "editProfile"])->name('view-edit-profile');
         Route::post("/edit/profile", [ProfileController::class, "updateProfile"])->name('edit-profile');
         Route::get("/edit/password", [ProfileController::class, "editPassword"])->name('view-edit-password');
         Route::post("/edit/password", [ProfileController::class, "updatePassword"])->name('edit-password');
+    });
+
+    Route::prefix('search')->group(function(){
+        Route::get("/", [SearchController::class, "index"])->name("search");
     });
 });

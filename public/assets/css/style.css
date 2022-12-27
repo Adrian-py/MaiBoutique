@@ -55,7 +55,8 @@ body {
 /* 8. Cart Page */
 /* 9. Transaction History Page */
 /* 10. Profile Page */
-/* 11. Edit Profile */
+/* 11. Edit Profile Page */
+/* 12. Search Page */
 
 /* Navbar */
 nav {
@@ -835,7 +836,7 @@ input::-webkit-inner-spin-button {
     transform: scale(1.05);
 }
 
-/* Edit Profile */
+/* Edit Profile Page */
 .edit-profile {
     padding: 3rem 6.67vw;
     color: rgba(var(--text));
@@ -864,4 +865,63 @@ input::-webkit-inner-spin-button {
 
 .edit-profile__title {
     font-size: 2.5rem;
+}
+
+/* Search Page */
+.search {
+    padding: 3rem 6.67vw;
+    color: rgba(var(--text));
+}
+
+.search__title {
+    margin-bottom: 2vh;
+    font-size: 2.5rem;
+}
+
+.search__form {
+    width: 100%;
+    margin-bottom: 4vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+.search__input {
+    padding: 1rem 2rem;
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(var(--border));
+    background: none;
+    font-size: 1.5rem;
+    font-family: var(--montserrat);
+    color: rgba(var(--text));
+}
+
+.search__submit {
+    height: fit-content;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--montserrat);
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: none;
+    background: rgba(var(--lightButtonBackground));
+    color: rgba(var(--darkText));
+    cursor: pointer;
+}
+
+.search__icon {
+    width: 1.25rem;
+}
+
+.search__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(min-content, 1fr);
+    gap: 2em;
 }
