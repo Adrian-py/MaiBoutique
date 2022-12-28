@@ -27,10 +27,6 @@ class RegisterController extends Controller
             "user_id" => $newUser->id,
         ]);
 
-        // harusnya jgn dibuat dulu
-        // Transaction::create([
-        //     "user_id" => $newUser->id,
-        // ]);
         return redirect("/login")->with("success", "Register Successful! Please Login.");
     }
 }

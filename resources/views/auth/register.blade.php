@@ -32,13 +32,15 @@
                         <p class="form__error-message">{{ $message }}</p>
                     @enderror
                 </div>
+
                 <div class="form__field form__field--phone">
                     <label for="phone_number" class="form__label">Phone Number</label>
-                    <input type="text" name="phone_number" placeholder="Enter your phone number (10-13 numbers)" class="form__input @error('phone_number')form__is-invalid @enderror" value="{{ old('phone_number') }}">
+                    <input type="text" name="phone_number" placeholder="Enter your phone number (10-13 numbers)" class="form__input form__input--noarrow @error('phone_number')form__is-invalid @enderror" value="{{ old('phone_number') }}">
                     @error("phone_number")
                         <p class="form__error-message">{{ $message }}</p>
                     @enderror
                 </div>
+
                 <div class="form__field form__field--address">
                     <label for="address" class="form__label">Address</label>
                     <input type="text" name="address" placeholder="Enter your address (min. 5 letters)" class="form__input @error('address')form__is-invalid @enderror" value="{{ old('address') }}">
@@ -46,6 +48,7 @@
                         <p class="form__error-message">{{ $message }}</p>
                     @enderror
                 </div>
+
                 <input type="submit" value="SIGN UP" class="form__submit">
             </form>
             <p class="form-link">Already Have an Acccount? <a href="/login" class="form-link__link">Login Here!</a></p>

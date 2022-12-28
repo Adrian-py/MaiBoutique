@@ -24,6 +24,7 @@
                 <h3>Cart is empty!</h3>
             </div>
         @endif
+
         <div class="cart__list">
             @foreach($cart_details as $cart_detail)
                 <div class="product">

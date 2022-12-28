@@ -48,8 +48,8 @@ Route::middleware(['auth'])->group(function() {
 
     // Create product page (admin only)
     Route::middleware(['admin'])->group(function() {
-        // add view
-        // ....
+        Route::get("/product/add", [ProductController::class, "add"])->name("view-add");
+        Route::post("/product/add", [ProductController::class, "store"])->name("add");
     });
 
     // Detail Page

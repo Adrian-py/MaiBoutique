@@ -49,7 +49,7 @@ body {
 /* 2. Welcome Page */
 /* 3. Login Page */
 /* 4. Register Page */
-/* 5. Login and Register Forms */
+/* 5. Forms Styling */
 /* 6. Home Page */
 /* 7. Detail Page */
 /* 8. Cart Page */
@@ -57,6 +57,7 @@ body {
 /* 10. Profile Page */
 /* 11. Edit Profile Page */
 /* 12. Search Page */
+/* 13. Add Item Page */
 
 /* Navbar */
 nav {
@@ -204,7 +205,6 @@ nav {
     width: 41.67%;
     height: 100%;
     box-shadow: 0px 0px 28px 23px rgba(var(--background)) inset;
-    /* border-radius: 50px 0; */
     overflow: hidden;
 }
 
@@ -274,7 +274,7 @@ nav {
     font-size: 4.25rem;
 }
 
-/* Login and Register Forms */
+/* Forms styling */
 .form {
     width: 100%;
     margin-bottom: 4vh;
@@ -301,16 +301,26 @@ nav {
     border-bottom: 1px solid rgba(var(--border));
     outline: none;
     color: rgba(var(--text));
+    font-family: var(--montserrat);
     font-size: 1.625rem;
     transition: padding 150ms ease-in-out;
+}
+
+.form__input--textarea {
+    resize: none;
+}
+
+.form__input--image {
+    font-size: 1.25rem;
+    border-bottom: none;
 }
 
 .form__input:focus {
     padding: 0.75rem 1rem;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.form__input--noarrow::-webkit-outer-spin-button,
+.form__input--noarrow::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -924,4 +934,18 @@ input::-webkit-inner-spin-button {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: minmax(min-content, 1fr);
     gap: 2em;
+}
+
+/* Add Item Page */
+.add-item {
+    height: fit-content;
+    min-height: 100%;
+    padding: 3rem 6.67vw;
+    padding-bottom: 1rem;
+    color: rgba(var(--text));
+}
+
+.add-item__title {
+    font-size: 2.5rem;
+    margin-bottom: 4vh;
 }
