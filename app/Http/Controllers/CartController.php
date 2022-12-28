@@ -19,19 +19,16 @@ class CartController extends Controller
     public function index(){
         $cart_id = Cart::current()->first()->id;
         $user_cart = Cart::find($cart_id);
-        $cart_details = $user_cart->cartDetails();
+        $cart_details = $user_cart->cartDetails;
         $total_quantity = $cart_details->sum('quantity');
-
         // Calculate total price
-        $total_price = 0;
-        foreach($user_cart->cartDetails as $cart_detail){
-            $total_price += $cart_detail->product->price * $cart_detail->quantity;
-        }
-
+        $total_price = $cart_details->sum(function($cart_detail){
+            return $cart_detail->product->price * $cart_detail->quantity;
+        });
         return view("pages.cart", [
             "total_quantity" => $total_quantity,
             "total_price" => $total_price,
-            "cart_details" => $cart_details->get(),
+            "cart_details" => $cart_details,
         ]);
     }
 
@@ -74,7 +71,7 @@ class CartController extends Controller
     */
     public function edit(Product $product){
         $cart_id = Cart::current()->first()->id;
-        $user_cart_detail = $product->cartDetail()->where('cart_id', $cart_id)->first();
+        $user_cart_detail = $product->cartDetail->where('cart_id', $cart_id)->first();
 
         return view("pages.product", [
             "product" => $product,

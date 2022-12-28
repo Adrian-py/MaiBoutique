@@ -18,7 +18,7 @@ class ProductFactory extends Factory
             "name" => $this->faker->numerify("Shirt-##"),
             "price" => $this->faker->numberBetween(50000, 10000000),
             "description" => $this->faker->text(),
-            "image" => "shirt-" . rand(1, 3) . ".jpg",
+            "image" => "images/" . "shirt-" . rand(1, 3) . ".jpg",
         ];
 
         $product["slug"] = Str::slug($product["name"]);

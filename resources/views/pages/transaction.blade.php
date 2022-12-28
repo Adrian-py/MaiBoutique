@@ -1,6 +1,6 @@
 @extends("layout.layout")
 
-@section('title', 'Transaction')
+@section('title', 'Transaction History')
 
 @section('navbar')
     @include('partials.navbar')
