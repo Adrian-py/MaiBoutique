@@ -53,8 +53,7 @@ Route::middleware(['auth'])->group(function() {
         // Delete product (admin only)
         Route::middleware(['admin'])->post("/delete/{product:slug}", [ProductController::class, "delete"])->name("delete-product");
     });
-
-    // Add product page (admin only)
+    // Add product (admin only)
     Route::middleware(['admin'])->group(function() {
         Route::get('/add', [ProductController::class, "add"])->name('view-add-product');
         Route::post('/add', [ProductController::class, "create"])->name('add-product');
