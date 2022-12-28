@@ -1,6 +1,6 @@
 @extends("layout.layout")
 
-@section('title', 'Detail')
+@section('title', $product->name)
 
 @section('navbar')
     @include('partials.navbar')
@@ -18,7 +18,7 @@
             <h1 class="product-detail__title">Product Detail</h1>
         </header>
         <div class="product-detail__product">
-            <img src={{ asset("/storage/images/$product->image") }} alt="" class="product-detail__image">
+            <img src="{{ asset("storage/" . $product->image) }}" alt="" class="product-detail__image">
             <div class="product-detail__description">
                 <h2 class="product-detail__name">{{ $product->name }}</h2>
                 <h4 class="product-detail__price">Rp. {{ number_format($product->price, 2) }}</h4>
@@ -70,7 +70,8 @@
 
                 {{-- Admin Only --}}
                 @if(Auth::user()->role === 1)
-                    <form action="/product/delete" method="POST">
+                    <form action="{{ route('delete-product', $product->slug) }}" method="POST">
+                        @csrf
                         <button type="submit" class="product-detail__delete">DELETE ITEM</button>
                     </form>
                 @endif

@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-// All members (not logged in)
+// All users that are not logged in
 Route::middleware(['guest'])->group(function() {
     // Welcome page
     Route::get('/', function () {
@@ -46,14 +47,18 @@ Route::middleware(['auth'])->group(function() {
     // Homepage
     Route::get("/home", [HomeController::class, "index"])->name("home");
 
-    // Create product page (admin only)
-    Route::middleware(['admin'])->group(function() {
-        // add view
-        // ....
+    // Detail Page
+    Route::prefix('product')->group(function(){
+        Route::get("/{product:slug}", [ProductController::class, "index"])->name("view-product");
+        // Delete product (admin only)
+        Route::middleware(['admin'])->post("/delete/{product:slug}", [ProductController::class, "delete"])->name("delete-product");
     });
 
-    // Detail Page
-    Route::get("/product/{product:slug}", [ProductController::class, "index"])->name("view-product");
+    // Add product page (admin only)
+    Route::middleware(['admin'])->group(function() {
+        Route::get('/add', [ProductController::class, "add"])->name('view-add-product');
+        Route::post('/add', [ProductController::class, "create"])->name('add-product');
+    });
 
     // Cart Page
     Route::prefix('cart')->group(function(){
@@ -73,12 +78,16 @@ Route::middleware(['auth'])->group(function() {
     // Profile Page
     Route::prefix('profile')->group(function(){
         Route::get("/", [ProfileController::class, "index"])->name('view-profile');
-        Route::get("/edit/profile", [ProfileController::class, "editProfile"])->name('view-edit-profile');
-        Route::post("/edit/profile", [ProfileController::class, "updateProfile"])->name('edit-profile');
+        // Edit profile (members only)
+        Route::middleware(['member'])->group(function(){
+            Route::get("/edit", [ProfileController::class, "editProfile"])->name('view-edit-profile');
+            Route::post("/edit", [ProfileController::class, "updateProfile"])->name('edit-profile');
+        });
         Route::get("/edit/password", [ProfileController::class, "editPassword"])->name('view-edit-password');
         Route::post("/edit/password", [ProfileController::class, "updatePassword"])->name('edit-password');
     });
 
+    // Search Page
     Route::prefix('search')->group(function(){
         Route::get("/", [SearchController::class, "index"])->name("search");
     });
