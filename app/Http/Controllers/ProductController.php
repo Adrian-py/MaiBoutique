@@ -44,6 +44,9 @@ class ProductController extends Controller
     }
 
     public function delete(Product $product){
+        if(Storage::exists('public/' . $product->image)){
+            Storage::delete('public/' . $product->image);
+        }
         $product->delete();
         return redirect(route('home'))->with('message', 'Successfully delete an item!');
     }
