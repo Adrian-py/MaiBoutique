@@ -21,10 +21,12 @@ class CartController extends Controller
         $user_cart = Cart::find($cart_id);
         $cart_details = $user_cart->cartDetails;
         $total_quantity = $cart_details->sum('quantity');
+
         // Calculate total price
         $total_price = $cart_details->sum(function($cart_detail){
             return $cart_detail->product->price * $cart_detail->quantity;
         });
+
         return view("pages.cart", [
             "total_quantity" => $total_quantity,
             "total_price" => $total_price,
@@ -140,12 +142,12 @@ class CartController extends Controller
             // Insert all transaction details
             $transaction->transactionDetails()->createMany($transaction_details);
 
-            // delete all cart details
+            // Delete all cart details
             $cart_details->delete();
 
-            return redirect()->back()->with('message', 'Successfully checkout!');
+            return redirect(route('view-transaction'))->with('success', 'Checkout successfull!');
         }
 
-        return redirect()->back()->with('message', 'There is no product in the cart!');
+        return redirect()->back()->with('failed', 'There is no product in the cart!');
     }
 }

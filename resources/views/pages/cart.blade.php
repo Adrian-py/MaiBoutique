@@ -8,6 +8,13 @@
 
 @section("content")
     <main class="cart">
+        {{-- if checkout failed --}}
+        @if(Session::get('failed'))
+            <div class="flash-message">
+                <p>{{ session("failed")}}</p>
+            </div>
+        @endif
+
         <div class="cart__header">
             <h1 class="cart__title">My Cart</h1>
             <div class="cart__desc">
@@ -19,16 +26,18 @@
             </div>
         </div>
 
+
+        {{-- If cart is empty --}}
         @if(count($cart_details) === 0)
-            <div class="cart__empty">
-                <h3>Cart is empty!</h3>
+            <div class="empty empty--cart">
+                <h3 class="empty__title">Your cart is still empty!</h3>
             </div>
         @endif
 
         <div class="cart__list">
             @foreach($cart_details as $cart_detail)
                 <div class="product">
-                    <img src="{{ asset("/storage/images/$cart_detail->product->image") }}" alt="{{ $cart_detail->product->name }} Image" class="product__image">
+                    <img src='{{ asset("storage/". $cart_detail->product->image) }}' alt="{{ $cart_detail->product->name }} Image" class="product__image">
 
                     <div class="product__desc product__desc--cart">
                         <h3 class="product__name">{{ $cart_detail->product->name }}</h3>

@@ -3,11 +3,18 @@
 @section('title', $product->name)
 
 @section('navbar')
-    @include('partials.navbar')
+@include('partials.navbar')
 @endsection
 
 @section("content")
     <main class="product-detail">
+        {{-- If add to cart successful --}}
+        @if(Session::get("add-success"))
+            <div class="flash-message flash-message--success">
+                <p>{{ session("add-success") }}</p>
+            </div>
+        @endif
+
         <header class="product-detail__header">
             <a href="/home" class="product-detail__back">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +24,7 @@
             </a>
             <h1 class="product-detail__title">Product Detail</h1>
         </header>
+
         <div class="product-detail__product">
             <img src="{{ asset("storage/" . $product->image) }}" alt="" class="product-detail__image">
             <div class="product-detail__description">
@@ -30,7 +38,7 @@
                         @csrf
                         <label for="quantity" class="product-detail__quantity__label">Quantity</label>
                         <div class="product-detail__quantity__form">
-                            <input type="number" value="{{$user_cart_detail->quantity}}" class="product-detail__quantity__input" placeholder="0" name="quantity">
+                            <input type="number" value="{{$user_cart_detail->quantity}}" class="product-detail__quantity__input form__input--noarrow" placeholder="0" name="quantity">
 
                             <button class="product-detail__quantity__submit" type="submit">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +60,7 @@
                         <label for="quantity" class="product-detail__quantity__label">Quantity</label>
 
                         <div class="product-detail__quantity__form">
-                            <input type="number" value="0" class="product-detail__quantity__input" placeholder="0" name="quantity">
+                            <input type="number" class="product-detail__quantity__input form__input--noarrow" placeholder="0" name="quantity">
 
                             <button class="product-detail__quantity__submit" type="submit">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -30,10 +30,12 @@ class ProductController extends Controller
             'price' => 'required|integer|gte:1000',
             'stock' => 'required|integer|gte:1'
         ]);
+
         $slug = Str::slug($validated['name']);
         $file = $request->file('image');
         $file_name = $slug . '.' . $file->extension();
         Storage::putFileAs('public/images', $file, $file_name);
+
         Product::create([
             'image' => 'images/' . $file_name,
             'name' => $validated['name'],
@@ -42,6 +44,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'stock' => $validated['stock']
         ]);
+
         return redirect(route('home'))->with('message', 'Successfully add an item!');
     }
 

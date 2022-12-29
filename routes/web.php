@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function() {
         // Delete product (admin only)
         Route::middleware(['admin'])->post("/delete/{product:slug}", [ProductController::class, "delete"])->name("delete-product");
     });
+
     // Add product (admin only)
     Route::middleware(['admin'])->group(function() {
         Route::get('/add', [ProductController::class, "add"])->name('view-add-product');
@@ -60,7 +61,7 @@ Route::middleware(['auth'])->group(function() {
     });
 
     // Cart Page
-    Route::prefix('cart')->group(function(){
+    Route::prefix('cart')->middleware(["member"])->group(function(){
         Route::get("/", [CartController::class, "index"])->name('view-cart');
         Route::post("/add", [CartController::class, "add"])->name('add-cart');
         Route::get("/edit/{product:slug}", [CartController::class, "edit"])->name('view-edit-cart');
@@ -77,11 +78,13 @@ Route::middleware(['auth'])->group(function() {
     // Profile Page
     Route::prefix('profile')->group(function(){
         Route::get("/", [ProfileController::class, "index"])->name('view-profile');
+
         // Edit profile (members only)
         Route::middleware(['member'])->group(function(){
             Route::get("/edit", [ProfileController::class, "editProfile"])->name('view-edit-profile');
             Route::post("/edit", [ProfileController::class, "updateProfile"])->name('edit-profile');
         });
+
         Route::get("/edit/password", [ProfileController::class, "editPassword"])->name('view-edit-password');
         Route::post("/edit/password", [ProfileController::class, "updatePassword"])->name('edit-password');
     });

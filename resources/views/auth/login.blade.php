@@ -8,13 +8,14 @@
             <h1 class="login__title">Sign In</h1>
             {{-- if login successful --}}
             @if(Session::get('success'))
-                <div class="login__message">
+                <div class="flash-message flash-message--success">
                     <p>{{ session("success") }}</p>
                 </div>
             @endif
+
             {{-- if login failed --}}
             @if(Session::get('message'))
-                <div class="login__message">
+                <div class="flash-message">
                     <p>{{ session("message")}}</p>
                 </div>
             @endif

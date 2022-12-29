@@ -8,7 +8,20 @@
 
 @section("content")
     <main class="transaction">
+        {{-- if checkout successfull --}}
+        @if(Session::get('success'))
+            <div class="flash-message flash-message--success">
+                <p>{{ session("success")}}</p>
+            </div>
+        @endif
+
         <h1 class="transaction__title">Check What You've Bought!</h1>
+
+        @if(count($transactions) === 0)
+            <div class="empty empty--transactions">
+                <h3 class="empty__title">You have not made any transactions!</h3>
+            </div>
+        @endif
 
         <div class="transaction__list">
             @foreach ($transactions as $transaction)
@@ -28,7 +41,7 @@
                     </ul>
 
                     {{-- Will change this later --}}
-                    <p class="transaction__total">Total Price: <span class="transaction__total__num">Rp. {{ $transaction->total_price }}</span></p>
+                    <p class="transaction__total">Total Price: <span class="transaction__total__num">Rp. {{ number_format($transaction->total_price, 2) }}</span></p>
                 </div>
             @endforeach
         </div>
