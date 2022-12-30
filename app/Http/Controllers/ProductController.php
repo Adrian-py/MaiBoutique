@@ -10,7 +10,9 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /*
+
         Display product detail page
+
     */
     public function index(Product $product){
         return view("pages.product", [
@@ -18,10 +20,22 @@ class ProductController extends Controller
         ]);
     }
 
+
+    /*
+
+        Display add product page
+
+    */
     public function add(){
         return view("pages.add");
     }
 
+
+    /*
+
+        Create new product
+
+    */
     public function create(Request $request){
         $validated = $request->validate([
             'image' => 'required|file|mimes:jpg,png,jpeg',
@@ -45,14 +59,21 @@ class ProductController extends Controller
             'stock' => $validated['stock']
         ]);
 
-        return redirect(route('home'))->with('message', 'Successfully add an item!');
+        return redirect(route('home'))->with('success', 'Successfully added a new item!');
     }
 
+
+    /*
+
+        Delete existing product
+
+    */
     public function delete(Product $product){
         if(Storage::exists('public/' . $product->image)){
             Storage::delete('public/' . $product->image);
         }
         $product->delete();
-        return redirect(route('home'))->with('message', 'Successfully delete an item!');
+
+        return redirect(route('home'))->with('success', 'Successfully deleted an item!');
     }
 }

@@ -33,7 +33,7 @@ class ProfileController extends Controller
             "address" => $validated["address"]
         ]);
 
-        return redirect(route('view-profile'));
+        return redirect(route('view-profile'))->with("success", "Successfully edited profile!");
     }
 
     public function editPassword(){
@@ -53,6 +53,6 @@ class ProfileController extends Controller
             "password" => $validated["new_password"]
         ]);
 
-        return redirect(route('view-profile'));
+        return redirect(route('view-profile'))->with("success", "Successfully changed password!");
     }
 }

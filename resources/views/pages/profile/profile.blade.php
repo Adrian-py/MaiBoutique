@@ -8,6 +8,13 @@
 
 @section("content")
     <main class="profile">
+            {{-- if edit successful --}}
+            @if(Session::get('success'))
+                <div class="flash-message flash-message--success">
+                    <p>{{ session("success")}}</p>
+                </div>
+            @endif
+
             <h2 class="profile__title">My Profile</h2>
             <h3 class="profile__role @if(Auth::user()->role)profile__role--admin @endif">
                 {{Auth::user()->role ? 'Admin' : 'Member'}}
