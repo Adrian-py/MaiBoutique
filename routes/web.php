@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function() {
             Route::post("/edit", [ProfileController::class, "updateProfile"])->name('edit-profile');
         });
 
+        // Edit password
         Route::get("/edit/password", [ProfileController::class, "editPassword"])->name('view-edit-password');
         Route::post("/edit/password", [ProfileController::class, "updatePassword"])->name('edit-password');
     });

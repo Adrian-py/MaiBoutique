@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    //
+    /*
+
+        Display transaction history page
+
+    */
     public function index(){
         $user_id = Auth::user()->id;
         $user_transactions = Transaction::where('user_id', $user_id)->with('transactionDetails', function($query){

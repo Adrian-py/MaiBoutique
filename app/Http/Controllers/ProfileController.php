@@ -8,15 +8,31 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    //
+    /*
+
+        Display profile page
+
+    */
     public function index(){
         return view('pages.profile.profile');
     }
 
+
+    /*
+
+        Display edit profile page
+
+    */
     public function editProfile(){
         return view('pages.profile.edit-profile');
     }
 
+
+    /*
+
+        Update profile
+
+    */
     public function updateProfile(Request $request){
         $user_id = Auth::user()->id;
         $validated = $request->validate([
@@ -36,10 +52,22 @@ class ProfileController extends Controller
         return redirect(route('view-profile'))->with("success", "Successfully edited profile!");
     }
 
+
+    /*
+
+        Display edit password
+
+    */
     public function editPassword(){
         return view('pages.profile.edit-password');
     }
 
+
+    /*
+
+        Update password
+
+    */
     public function updatePassword(Request $request){
         $validated = $request->validate([
             "old_password" => "required|string|min:5|max:20|current_password",

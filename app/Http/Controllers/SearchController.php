@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     /*
+
         Display search page and handle search request
+
     */
     public function index(Request $request){
         $product_list = Product::paginate(8);

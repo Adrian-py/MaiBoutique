@@ -16,8 +16,8 @@ class TransactionDetailFactory extends Factory
     public function definition()
     {
         $products = Product::pluck('id')->toArray();
+
         return [
-            // 'transaction_id' => $this->faker->unique()->numberBetween(1, Transaction::count()),
             'product_id' => $this->faker->randomElement($products),
             'quantity' => $this->faker->randomDigitNotNull(),
         ];

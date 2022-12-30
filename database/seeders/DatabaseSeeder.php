@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             "remember_token" => "17LgSS4S4g",
         ]);
 
+        // Create n products
         Product::factory()->count(100)->create();
 
         // Users with Member Role
@@ -52,6 +53,8 @@ class DatabaseSeeder extends Seeder
                 ])->create();
             });
         });
+
+        // To manually create user
         // User::create([
         //     "username" => "James Martin",
         //     "email" => "james_martin@gmail.com",
@@ -60,6 +63,5 @@ class DatabaseSeeder extends Seeder
         //     "address" => "Jl Gedung Ex QTA/28, Dki Jakarta",
         //     "role" => 0,
         // ]);
-
     }
 }

@@ -823,7 +823,7 @@ nav {
 }
 
 .profile__role--admin {
-    background: rbga(var(--adminColor));
+    background: rgba(var(--adminColor));
     color: rgba(var(--text));
 }
 
