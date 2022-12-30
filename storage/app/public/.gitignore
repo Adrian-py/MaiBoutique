@@ -1,5 +1,5 @@
 *
-!/images/shirt-1.jpg
-!/images/shirt-2.jpg
-!/images/shirt-3.jpg
+!./images/shirt-1.jpg
+!./images/shirt-2.jpg
+!./images/shirt-3.jpg
 !.gitignore
