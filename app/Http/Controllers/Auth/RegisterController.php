@@ -32,7 +32,6 @@ class RegisterController extends Controller
             "phone_number" => "required|digits_between:10,13",
             "address" => "required|string|min:5",
         ]);
-
         $validated["password"] = bcrypt($validated["password"]);
         $newUser = User::create($validated);
 

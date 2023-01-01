@@ -29,7 +29,6 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required|string|min:5|max:20',
         ]);
-
         if(Auth::attempt($validated)){
             if($request->remember){
                 Cookie::queue('useremail', $validated['email'], 60);

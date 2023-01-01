@@ -48,7 +48,7 @@ class ProductController extends Controller
         $slug = Str::slug($validated['name']);
         $file = $request->file('image');
         $file_name = $slug . '.' . $file->extension();
-        Storage::putFileAs('public/images', $file, $file_name);
+        Storage::putFileAs('images', $file, $file_name);
 
         Product::create([
             'image' => 'images/' . $file_name,
@@ -69,11 +69,11 @@ class ProductController extends Controller
 
     */
     public function delete(Product $product){
-        if(Storage::exists('public/' . $product->image)){
-            Storage::delete('public/' . $product->image);
-        }
+        // Delete the image
+        // if(Storage::exists('public/' . $product->image)){
+        //     Storage::delete('public/' . $product->image);
+        // }
         $product->delete();
-
         return redirect(route('home'))->with('success', 'Successfully deleted an item!');
     }
 }

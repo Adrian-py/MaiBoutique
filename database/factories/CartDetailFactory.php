@@ -20,7 +20,7 @@ class CartDetailFactory extends Factory
         return [
             'cart_id' => 1,
             'product_id' => $this->faker->randomElement($products),
-            'quantity' => $this->faker->randomDigit(),
+            'quantity' => $this->faker->randomDigitNotNull(),
         ];
     }
 }

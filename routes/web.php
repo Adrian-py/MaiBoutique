@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Product;
 
 /*
@@ -22,14 +23,11 @@ use App\Models\Product;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Welcome page
+Route::get('/', [WelcomeController::class, "index"])->name("view-welcome");
 
 // All users that are not logged in
 Route::middleware(['guest'])->group(function() {
-    // Welcome page
-    Route::get('/', function () {
-        return view('pages.welcome');
-    });
-
     // Login
     Route::get("/login", [LoginController::class, "index"])->name("view-login");
     Route::post("/login", [LoginController::class, "login"])->name("login");
