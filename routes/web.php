@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/add', [ProductController::class, "create"])->name('add-product');
     });
 
-    // Cart Page
+    // Cart Page (member only)
     Route::prefix('cart')->middleware(["member"])->group(function(){
         Route::get("/", [CartController::class, "index"])->name('view-cart');
         Route::post("/add", [CartController::class, "add"])->name('add-cart');
@@ -67,8 +67,8 @@ Route::middleware(['auth'])->group(function() {
         Route::post("/checkout", [CartController::class, "checkout"])->name("checkout");
     });
 
-    // Transaction Page
-    Route::prefix('transaction')->group(function(){
+    // Transaction Page (member only)
+    Route::prefix('transaction')->middleware(["member"])->group(function(){
         Route::get("/", [TransactionController::class, "index"])->name('view-transaction');
     });
 
