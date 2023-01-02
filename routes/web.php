@@ -11,7 +11,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WelcomeController;
-use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------

@@ -26,14 +26,12 @@
             </div>
         </div>
 
-
         {{-- If cart is empty --}}
         @if(count($cart_details) === 0)
             <div class="empty empty--cart">
                 <h3 class="empty__title">Your cart is still empty!</h3>
             </div>
         @endif
-
         <div class="cart__list">
             @foreach($cart_details as $cart_detail)
                 <div class="product">
