@@ -70,9 +70,9 @@ class ProductController extends Controller
     */
     public function delete(Product $product){
         // Delete the image
-        // if(Storage::exists('public/' . $product->image)){
-        //     Storage::delete('public/' . $product->image);
-        // }
+        if(Storage::exists($product->image)){
+            Storage::delete($product->image);
+        }
         $product->delete();
         return redirect(route('home'))->with('success', 'Successfully deleted an item!');
     }
