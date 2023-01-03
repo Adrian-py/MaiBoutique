@@ -23,6 +23,7 @@ class TransactionController extends Controller
                             ->join('products', 'transaction_details.product_id','=', 'products.id')
                             ->selectRaw('SUM(quantity * price) as total_price')
         ])->get();
+
         return view("pages.transaction", [
             'transactions' => $user_transactions
         ]);
