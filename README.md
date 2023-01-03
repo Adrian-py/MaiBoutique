@@ -6,4 +6,5 @@
 2. run npm install and composer install
 3. migrate to the mysql database
 4. run "php artisan storage:link"
-5. run "php artisan serve"
+5. generate key using the command "php artisan key:generate"
+6. run "php artisan serve"
